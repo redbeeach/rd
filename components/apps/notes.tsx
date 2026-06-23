@@ -14,53 +14,48 @@ export default function Notes({ isDarkMode = true }: NotesProps) {
     {
       id: 1,
       title: "About Me",
-      content: `# Daniel Prior
-Frontend Developer & Full Stack Engineer
+      content: `# 윤홍비
+Web Publisher / Frontend Developer
 
 ## Skills
-### Frontend
-- React/Next.js
-- Vue.js/Nuxt.js
-- TypeScript/JavaScript
-- Tailwind CSS/SCSS
-- UI/UX Design
-- Responsive Web Development
-- Vite/Webpack
-- Wordpress, Umbraco etc.
+### Frontend / Publishing
+- HTML / CSS / JavaScript
+- jQuery / GSAP / Swiper
+- React / TypeScript
+- Tailwind CSS
+- 반응형 웹 퍼블리싱
 
-### Backend
-- Node.js/Express
-- PHP/Laravel/Slim
-- Python/Django
-- Rust & GO (learning)
-- SQL (MySQL, PostgreSQL)
-- NoSQL (MongoDB)
-- RESTful APIs/GraphQL
+### CMS / Backend
+- Gnuboard5 (5년+)
+- Gnuboard7 (Laravel 기반)
+- PHP / MySQL
+- Laravel
 
-### Game Development
-- Unity/Unreal Engine
-- C# & C++
-- Game Design Principles
-- Game Mechanics & Systems
-- Blender 3D/3D Modeling
-- Animations for agricultural machinery and vehicles
-- Godot Engine
+### SEO & 디지털마케팅
+- 301 리다이렉트 / Pretty URL
+- Schema / JSON-LD (E-E-A-T)
+- 사이트맵 자동 생성
+- 클라이언트向 SEO 리포트 대응
+- 의료(YMYL) 광고주 사이트 구축 경험
 
-### DevOps & Tools
-- Docker/Containerization
-- CI/CD Pipelines
-- Git/GitHub
-- Agile/Scrum Methodologies
-- AWS/Cloud Services
-- Linux/Unix
+### Hosting & Tools
+- Cafe24 / Gabia
+- Git / GitHub
+- Laragon (로컬 개발 환경)
+- SQL (SQLD 자격 취득 준비)
 
 ## Experience
-Currently working as a Senior Full Stack Developer, focusing on building accessible, performant, and scalable web applications. Experienced in leading development teams and implementing best practices for modern web development.
+디지털 에이전시에서 파트장으로 근무하며 프론트엔드 퍼블리싱과
+CMS 기반 사이트 구축을 담당. Gnuboard5/Gnuboard7(GB7)을 중심으로
+5년 이상의 실무 경험을 쌓았고, 현재는 Laravel + React/TypeScript
+기반의 풀스택 개발로 영역을 확장 중.
+
+여러 클라이언트(의료, 치과, 미용 등)의 CMS 사이트를 관리하며
+.htaccess 라우팅, 소셜 로그인 연동, SMS API 연동, SEO 대응 등
+다양한 실무 경험을 보유.
 
 ## Contact
-Email: mail@danielprior.dk
-GitHub: github.com/daprior
-Portfolio: danielprior.dev`,
+GitHub: github.com/redbeeach`,
       date: "Today, 10:30 AM",
     },
     {
@@ -68,29 +63,27 @@ Portfolio: danielprior.dev`,
       title: "Learning Goals",
       content: `# Learning Goals
 
-## Career & Independence
-- Network with like-minded professionals and mentors
-- Build a personal brand and online presence
-- Work on meaningful AI projects with real-world impact
-- Enhance knowledge in industries I'm passionate about (fintech, finance, web3 and automotive)
+## 커리어 & 성장
+- 풀스택 개발자로서의 역량 확장 (Laravel + React/TypeScript)
+- 포트폴리오 프로젝트(루미에르 피부과, macOS 포트폴리오) 완성도 높이기
+- SQLD 자격증 취득 및 SQL 역량 강화
+- 새로운 회사/포지션 탐색 및 이직 준비
 
-## Technical Skills
-- Master Rust for performance-critical applications and systems programming
-- Improve Go proficiency for backend services and microservices
-- Deepen knowledge of AI/ML frameworks and practical applications
-- Make popular games with Unity and Unreal Engine
+## 기술 스킬
+- GB7(Gnuboard7) 심화 — JSON 레이아웃, 모달/액션 패턴 숙달
+- React / TypeScript 실전 활용 능력 강화
+- Laravel 백엔드 설계 및 API 구조화
+- Git 협업 워크플로우 익히기 (브랜치 전략, PR 등)
 
-## Personal Projects
-- Develop an indie game from concept to release
-- Build AI-powered tools that enhance creative workflows
-- Create open-source libraries that solve real problems
-- Contribute to projects I use and admire
+## 개인 프로젝트
+- macOS 스타일 포트폴리오 사이트 완성 (Vercel 배포)
+- 클리닉 예약 시스템(루미에르 피부과) 풀스택 구현
+- 기존 GB5 프로젝트 경험을 GB7/Laravel 기반으로 재구성
 
-## Learning Approach
-- Focus on deep understanding rather than surface-level knowledge
-- Build complete projects rather than just tutorials and unfinished projects
-- Share knowledge and experiences with the community
-- Maintain a balance between breadth and depth of skills`,
+## 학습 방식
+- 튜토리얼보다 실제 프로젝트 완성에 집중
+- 작업 자동화 워크플로우(template:update, npm run build 등) 익히기
+- 실무에서 마주친 문제를 기록하고 정리하는 습관 유지`,
       date: "Yesterday, 3:15 PM",
     },
   ])
