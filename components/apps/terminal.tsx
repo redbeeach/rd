@@ -92,7 +92,7 @@ export default function Terminal({ isDarkMode = true }: TerminalProps) {
     const mainCommand = args[0]
 
     // Add command to history
-    setHistory((prev) => [...prev, `daniel@macbook-pro ~ $ ${cmd}`, ""])
+    setHistory((prev) => [...prev, `hongbi@macbook-pro ~ $ ${cmd}`, ""])
 
     // Process command
     switch (mainCommand) {
@@ -127,78 +127,76 @@ export default function Terminal({ isDarkMode = true }: TerminalProps) {
         break
 
       case "ls":
-        setHistory((prev) => [...prev, "Documents", "Projects", "Downloads", "Desktop", "Music", "Pictures", "Videos", ""])
+        setHistory((prev) => [
+          ...prev,
+          "Projects",
+          "Resume",
+          "Portfolio",
+          "GB7-Reservation-System",
+          "macOS-Portfolio",
+          "",
+        ])
         break
 
       case "whoami":
-        setHistory((prev) => [...prev, "daniel", ""])
+        setHistory((prev) => [...prev, "hongbi", ""])
         break
 
       case "about":
         setHistory((prev) => [
           ...prev,
           "┌─────────────────────────────────────┐",
-          "│ Daniel Prior                        │",
-          "│ Frontend Developer & UI/UX Designer │",
+          "│ 윤홍비 (Hongbi Yoon)                 │",
+          "│ Web Publisher / Frontend Developer  │",
           "└─────────────────────────────────────┘",
           "",
-          "I'm a passionate web developer with expertise in",
-          "creating beautiful, responsive, and user-friendly",
-          "web applications. I love working with modern",
-          "frameworks and technologies to build",
-          "seamless user experiences. I have a strong",
-          "background in both frontend and backend",
-          "development, and I'm always eager to learn",
-          "new skills and improve my craft.",
+          "디지털 에이전시에서 파트장으로 근무하며",
+          "프론트엔드 퍼블리싱과 CMS 기반 사이트 구축을",
+          "담당해왔습니다. Gnuboard5/Gnuboard7(GB7)을",
+          "중심으로 5년 이상의 경험을 쌓았고,",
+          "최근에는 Laravel + React/TypeScript 기반의",
+          "풀스택 개발로 영역을 넓히고 있습니다.",
+          "",
+          "클라이언트 대응 SEO/디지털마케팅 작업과",
+          "의료 광고주向 사이트 구축 경험이 많습니다.",
           "",
         ])
         break
 
-        case "skills":
-          setHistory((prev) => [
-            ...prev,
-            "┌──────────────┐",
-            "│   Skills     │",
-            "└──────────────┘",
-            "",
-            "Frontend:",
-            "• React / Next.js",
-            "• Vue.js / Nuxt.js",
-            "• TypeScript / JavaScript",
-            "• Tailwind CSS / SCSS",
-            "• UI/UX Design",
-            "• Responsive Web Development",
-            "• Vite / Webpack",
-            "• WordPress, Umbraco etc.",
-            "",
-            "Backend:",
-            "• Node.js / Express",
-            "• PHP / Laravel / Slim",
-            "• Python / Django",
-            "• Rust & Go (learning)",
-            "• SQL (MySQL, PostgreSQL)",
-            "• NoSQL (MongoDB)",
-            "• RESTful APIs / GraphQL",
-            "",
-            "Game Development:",
-            "• Unity / Unreal Engine",
-            "• C# & C++",
-            "• Game Design Principles",
-            "• Game Mechanics & Systems",
-            "• Blender 3D / 3D Modeling",
-            "• Animations for agri machinery & vehicles",
-            "• Godot Engine",
-            "",
-            "DevOps & Tools:",
-            "• Docker / Containerization",
-            "• CI/CD Pipelines",
-            "• Git / GitHub",
-            "• Agile / Scrum Methodologies",
-            "• AWS / Cloud Services",
-            "• Linux / Unix",
-            "",
-          ])
-          break
+      case "skills":
+        setHistory((prev) => [
+          ...prev,
+          "┌──────────────┐",
+          "│   Skills     │",
+          "└──────────────┘",
+          "",
+          "Frontend / Publishing:",
+          "• HTML / CSS / JavaScript",
+          "• jQuery / GSAP / Swiper",
+          "• React / TypeScript",
+          "• Tailwind CSS",
+          "• 반응형 웹 퍼블리싱",
+          "",
+          "CMS / Backend:",
+          "• Gnuboard5 (5년+)",
+          "• Gnuboard7 (Laravel 기반)",
+          "• PHP / MySQL",
+          "• Laravel",
+          "",
+          "SEO & 마케팅:",
+          "• 301 리다이렉트 / Pretty URL",
+          "• Schema / JSON-LD (E-E-A-T)",
+          "• 사이트맵 자동 생성",
+          "• 클라이언트向 SEO 리포트 대응",
+          "",
+          "Hosting & Tools:",
+          "• Cafe24 / Gabia",
+          "• Git / GitHub",
+          "• Laragon (로컬 개발 환경)",
+          "• SQL (SQLD 개발자 자격증 보유)",
+          "",
+        ])
+        break
 
       case "contact":
         setHistory((prev) => [
@@ -207,10 +205,7 @@ export default function Terminal({ isDarkMode = true }: TerminalProps) {
           "│ Contact │",
           "└─────────┘",
           "",
-          "Email: mail@danielprior.dk",
-          "GitHub: github.com/daprior",
-          "LinkedIn: linkedin.com/in/daniel-prior-53a679195/",
-          "Website: danielprior.dev",
+          "GitHub: github.com/redbeeach",
           "",
         ])
         break
@@ -234,7 +229,7 @@ export default function Terminal({ isDarkMode = true }: TerminalProps) {
       ))}
 
       <div className="flex">
-        <span className="mr-2">daniel@macbook-pro ~ $</span>
+        <span className="mr-2">hongbi@macbook-pro ~ $</span>
         <input
           ref={inputRef}
           type="text"

@@ -8,7 +8,7 @@ interface SafariProps {
 }
 
 export default function Safari({ isDarkMode = true }: SafariProps) {
-  const [url, setUrl] = useState("https://danielprior.dev")
+  const [url, setUrl] = useState("https://rd-lake.vercel.app/")
   const [isLoading, setIsLoading] = useState(false)
   const [activeTab, setActiveTab] = useState("home")
   const [wifiEnabled, setWifiEnabled] = useState(true)
@@ -46,23 +46,18 @@ export default function Safari({ isDarkMode = true }: SafariProps) {
   // Updated bookmarks with social links
   const socialLinks = [
     {
-      title: "LinkedIn",
-      url: "https://www.linkedin.com/in/daniel-prior-53a679195/",
-      icon: "/linkedin.png",
-    },
-    {
       title: "GitHub",
-      url: "https://github.com/daprior",
+      url: "https://github.com/redbeeach/rd",
       icon: "/github.png",
     },
     {
       title: "YouTube",
-      url: "https://www.youtube.com/@DanielPrior0",
+      url: "https://www.youtube.com/",
       icon: "/youtube.png",
     },
     {
       title: "Email",
-      url: "mailto:mail@danielprior.dk",
+      url: "mailto:mail@naver.com",
       icon: "/mail.png",
     },
   ]
@@ -214,7 +209,7 @@ export default function Safari({ isDarkMode = true }: SafariProps) {
                 ))}
               </div>
 
-              <div className="mt-8 max-w-2xl mx-auto">
+              {/*<div className="mt-8 max-w-2xl mx-auto">
                 <div className={`p-6 rounded-lg ${cardBg}`}>
                   <h3 className="text-xl font-semibold mb-4">Daniel Prior - Portfolio</h3>
                   <p className="mb-4">
@@ -233,7 +228,7 @@ export default function Safari({ isDarkMode = true }: SafariProps) {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div>*/}
             </div>
           )
         )}

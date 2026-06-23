@@ -101,6 +101,24 @@ const weatherData = {
       { day: "Fri", temp: 17, condition: "partly-cloudy" },
     ],
   },
+  "Seoul": {
+    current: {
+      temp: 26,
+      condition: "Sunny",
+      humidity: 58,
+      windSpeed: 9,
+      sunrise: "5:18 AM",
+      sunset: "7:52 PM",
+      feelsLike: 27,
+    },
+    forecast: [
+      { day: "Mon", temp: 27, condition: "sunny" },
+      { day: "Tue", temp: 28, condition: "sunny" },
+      { day: "Wed", temp: 25, condition: "partly-cloudy" },
+      { day: "Thu", temp: 23, condition: "rainy" },
+      { day: "Fri", temp: 24, condition: "partly-cloudy" },
+    ],
+  },
 }
 
 type WeatherCondition = "sunny" | "partly-cloudy" | "cloudy" | "rainy" | "snowy"
@@ -116,27 +134,27 @@ interface Particle {
 }
 
 export default function Weather({ isDarkMode = true }: WeatherProps) {
-  const [city, setCity] = useState("New York")
+  const [city, setCity] = useState("Seoul")
   const [searchQuery, setSearchQuery] = useState("")
-  const [weather, setWeather] = useState(weatherData["New York"])
-  const [condition, setCondition] = useState<WeatherCondition>("partly-cloudy")
+  const [weather, setWeather] = useState(weatherData["Seoul"])
+  const [condition, setCondition] = useState<WeatherCondition>("sunny")
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particles = useRef<Particle[]>([])
   const animationRef = useRef<number | null>(null)
-  
+
   const bgColor = isDarkMode ? "bg-gray-900" : "bg-gray-100"
   const textColor = isDarkMode ? "text-white" : "text-gray-800"
   const cardBg = isDarkMode ? "bg-gray-800" : "bg-white"
   const borderColor = isDarkMode ? "border-gray-700" : "border-gray-200"
-  
+
   // Initialize particles and animation
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    
+
     const ctx = canvas.getContext('2d')
     if (!ctx) return
-    
+
     // Set canvas size
     const resizeCanvas = () => {
       const parent = canvas.parentElement
@@ -145,29 +163,29 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
         canvas.height = parent.clientHeight
       }
     }
-    
+
     resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
-    
+
     // Initialize particles based on condition
     initParticles()
-    
+
     // Start animation
     const animate = () => {
       if (!canvas || !ctx) return
-      
+
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      
+
       // Update and draw particles
       updateParticles(ctx, canvas.width, canvas.height)
-      
+
       // Continue animation
       animationRef.current = requestAnimationFrame(animate)
     }
-    
+
     animate()
-    
+
     return () => {
       window.removeEventListener('resize', resizeCanvas)
       if (animationRef.current) {
@@ -175,12 +193,12 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
       }
     }
   }, [condition])
-  
+
   // Update weather condition when city changes
   useEffect(() => {
     if (weatherData[city]) {
       setWeather(weatherData[city])
-      
+
       // Set condition based on current weather
       const currentCondition = weatherData[city].current.condition.toLowerCase()
       if (currentCondition.includes("rain")) {
@@ -194,22 +212,22 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
       } else {
         setCondition("partly-cloudy")
       }
-      
+
       // Reinitialize particles
       initParticles()
     }
   }, [city])
-  
+
   const initParticles = () => {
     particles.current = []
-    
-    const count = condition === "rainy" ? 100 : 
-                  condition === "snowy" ? 80 : 
+
+    const count = condition === "rainy" ? 100 :
+                  condition === "snowy" ? 80 :
                   condition === "sunny" ? 50 : 30
-    
+
     for (let i = 0; i < count; i++) {
       let particle: Particle
-      
+
       if (condition === "rainy") {
         particle = {
           x: Math.random() * 100,
@@ -238,8 +256,8 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
           speedX: (Math.random() - 0.5) * 0.5,
           speedY: (Math.random() - 0.5) * 0.5,
           opacity: Math.random() * 0.5 + 0.3,
-          color: isDarkMode ? 
-            `rgba(${255}, ${200 + Math.random() * 55}, ${0}, ${Math.random() * 0.5 + 0.3})` : 
+          color: isDarkMode ?
+            `rgba(${255}, ${200 + Math.random() * 55}, ${0}, ${Math.random() * 0.5 + 0.3})` :
             `rgba(${255}, ${200 + Math.random() * 55}, ${0}, ${Math.random() * 0.7 + 0.3})`
         }
       } else {
@@ -254,20 +272,20 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
           color: isDarkMode ? 'rgba(200, 200, 220, 0.3)' : 'rgba(255, 255, 255, 0.7)'
         }
       }
-      
+
       particles.current.push(particle)
     }
   }
-  
+
   const updateParticles = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
     particles.current.forEach(p => {
       // Convert percentage to actual position
       const x = (p.x / 100) * width
       const y = (p.y / 100) * height
-      
+
       // Draw particle
       ctx.beginPath()
-      
+
       if (condition === "rainy") {
         // Draw raindrops
         ctx.strokeStyle = p.color
@@ -291,11 +309,11 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
         ctx.arc(x, y, p.size, 0, Math.PI * 2)
         ctx.fill()
       }
-      
+
       // Update position
       p.x += p.speedX * 0.1
       p.y += p.speedY * 0.1
-      
+
       // Reset position if out of bounds
       if (condition === "rainy") {
         if (p.y > 100) {
@@ -326,11 +344,11 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
       }
     })
   }
-  
+
   const handleSearch = () => {
     const query = searchQuery.trim()
     if (query && Object.keys(weatherData).some(city => city.toLowerCase().includes(query.toLowerCase()))) {
-      const foundCity = Object.keys(weatherData).find(city => 
+      const foundCity = Object.keys(weatherData).find(city =>
         city.toLowerCase().includes(query.toLowerCase())
       )
       if (foundCity) {
@@ -339,7 +357,7 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
     }
     setSearchQuery("")
   }
-  
+
   const getWeatherIcon = (condition: string) => {
     if (condition.includes("sunny")) return <Sun className="w-6 h-6" />
     if (condition.includes("partly-cloudy")) return <Cloud className="w-6 h-6" />
@@ -347,15 +365,15 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
     if (condition.includes("snowy")) return <CloudSnow className="w-6 h-6" />
     return <Cloud className="w-6 h-6" />
   }
-  
+
   return (
     <div className={`h-full ${bgColor} ${textColor} flex flex-col relative overflow-hidden`}>
       {/* Canvas for weather effects */}
-      <canvas 
-        ref={canvasRef} 
+      <canvas
+        ref={canvasRef}
         className="absolute inset-0 pointer-events-none z-0"
       />
-      
+
       {/* Content */}
       <div className="relative z-10 flex flex-col h-full">
         {/* Search bar */}
@@ -371,7 +389,7 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           </div>
-          <Button 
+          <Button
             onClick={handleSearch}
             variant={isDarkMode ? "outline" : "default"}
             className={isDarkMode ? "border-gray-700" : ""}
@@ -379,7 +397,7 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
             Search
           </Button>
         </div>
-        
+
         {/* Current weather */}
         <div className="px-6 py-4 flex flex-col md:flex-row items-center justify-between">
           <div className="flex flex-col items-center md:items-start mb-4 md:mb-0">
@@ -388,7 +406,7 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
               <h2 className="text-2xl font-bold">{city}</h2>
             </div>
             <p className="text-gray-500 text-sm mt-1">Today</p>
-            
+
             <div className="flex items-center mt-4">
               <div className="text-6xl font-light mr-4">{weather.current.temp}°</div>
               <div>
@@ -397,7 +415,7 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
               </div>
             </div>
           </div>
-          
+
           <div className={`${cardBg} p-4 rounded-lg border ${borderColor} grid grid-cols-2 gap-4 w-full md:w-auto`}>
             <div className="flex items-center">
               <Droplets className="w-5 h-5 mr-2 text-blue-500" />
@@ -429,7 +447,7 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
             </div>
           </div>
         </div>
-        
+
         {/* Forecast */}
         <div className="px-6 mt-4">
           <h3 className="text-lg font-medium mb-3">5-Day Forecast</h3>
@@ -445,7 +463,7 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
             ))}
           </div>
         </div>
-        
+
         {/* City selector */}
         <div className="px-6 mt-6">
           <h3 className="text-lg font-medium mb-3">Popular Cities</h3>
