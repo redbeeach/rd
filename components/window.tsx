@@ -16,9 +16,13 @@ import YouTube from "@/components/apps/youtube"
 import Spotify from "@/components/apps/spotify"
 import Snake from "@/components/apps/snake"
 import Weather from "@/components/apps/weather"
+import Folder from "@/components/apps/folder"
+import IframeApp from "@/components/apps/iframe-app"
 
-
-const componentMap: Record<string, React.ComponentType<{ isDarkMode?: boolean }>> = {
+const componentMap: Record<
+  string,
+  React.ComponentType<{ isDarkMode?: boolean; windowId?: string; onOpenApp?: (app: AppWindow) => void }>
+> = {
   Notes,
   GitHub,
   Safari,
@@ -30,6 +34,8 @@ const componentMap: Record<string, React.ComponentType<{ isDarkMode?: boolean }>
   Spotify,
   Snake,
   Weather,
+  Folder,
+  IframeApp,
 }
 
 interface WindowProps {
@@ -38,9 +44,10 @@ interface WindowProps {
   onClose: () => void
   onFocus: () => void
   isDarkMode: boolean
+  onOpenApp: (app: AppWindow) => void
 }
 
-export default function Window({ window, isActive, onClose, onFocus, isDarkMode }: WindowProps) {
+export default function Window({ window, isActive, onClose, onFocus, isDarkMode, onOpenApp }: WindowProps) {
   const [position, setPosition] = useState(window.position)
   const [size, setSize] = useState(window.size)
   const [isDragging, setIsDragging] = useState(false)
@@ -239,7 +246,11 @@ export default function Window({ window, isActive, onClose, onFocus, isDarkMode 
 
       {/* Window content */}
       <div className={`${contentBgClass} h-[calc(100%-2rem)] overflow-auto`}>
-        {AppComponent ? <AppComponent isDarkMode={isDarkMode} /> : <div className="p-4">Content not available</div>}
+        {AppComponent ? (
+          <AppComponent isDarkMode={isDarkMode} windowId={window.id} onOpenApp={onOpenApp} />
+        ) : (
+          <div className="p-4">Content not available</div>
+        )}
       </div>
 
       {/* Resize handles */}

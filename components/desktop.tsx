@@ -11,6 +11,7 @@ import Launchpad from "@/components/launchpad"
 import ControlCenter from "@/components/control-center"
 import Spotlight from "@/components/spotlight"
 import type { AppWindow } from "@/types"
+import { desktopItems } from "@/lib/desktop-items"
 
 interface DesktopProps {
   onLogout: () => void
@@ -140,6 +141,28 @@ export default function Desktop({
       >
         <Wallpaper isDarkMode={isDarkMode} />
 
+        {/* Desktop Icons */}
+        <div className="absolute top-10 left-4 flex flex-col gap-4 z-10">
+          {desktopItems.map((item) => (
+            <button
+              key={item.id}
+              onDoubleClick={() =>
+                openApp({
+                  id: item.id,
+                  title: item.title,
+                  component: item.type === "folder" ? "Folder" : "IframeApp",
+                  position: { x: 200, y: 100 },
+                  size: { width: 800, height: 600 },
+                })
+              }
+              className="flex flex-col items-center gap-1 p-2 w-20 rounded hover:bg-white/10"
+            >
+              <img src={item.icon} alt={item.title} className="w-12 h-12" />
+              <span className="text-xs text-white text-center drop-shadow">{item.title}</span>
+            </button>
+          ))}
+        </div>
+
         <Menubar
           time={time}
           onLogout={onLogout}
@@ -162,6 +185,7 @@ export default function Desktop({
               onClose={() => closeWindow(window.id)}
               onFocus={() => setActiveWindow(window.id)}
               isDarkMode={isDarkMode}
+              onOpenApp={openApp}
             />
           ))}
         </div>
